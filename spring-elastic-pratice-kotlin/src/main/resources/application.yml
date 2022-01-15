@@ -1,0 +1,11 @@
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+#logging:
+#  level:
+#    org.springframework.data.elasticsearch.client.WIRE: TRACE
+
+elasticsearch:
+  url: "localhost:9200"
