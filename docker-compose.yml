@@ -13,7 +13,7 @@ services:
       - "9200:9200"
       - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ES_JAVA_OPTS: "-Xmx512m -Xms512m"
       ELASTIC_PASSWORD: changeme
       # Use single node discovery in order to disable production mode and avoid bootstrap checks.
       # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
@@ -35,7 +35,7 @@ services:
       - "5000:5000/udp"
       - "9600:9600"
     environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      LS_JAVA_OPTS: "-Xmx512m -Xms512m"
     networks:
       - elk
     depends_on:
@@ -55,9 +55,30 @@ services:
     depends_on:
       - elasticsearch
 
+  mysql-db:
+    image: mysql:8.0
+    restart: unless-stopped
+    container_name: elastic-demo-db
+    ports:
+      - "13311:3306"
+    environment:
+      - MYSQL_DATABASE=esdb
+      - MYSQL_USER=esadmin
+      - MYSQL_PASSWORD=esadmin
+      - MYSQL_ROOT_PASSWORD=1234
+      - TZ=Asia/Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - es-mysql-db-data:/var/lib/mysql8
+    networks:
+      - elk
+
 networks:
   elk:
     driver: bridge
 
 volumes:
   elasticsearch:
+  es-mysql-db-data:
