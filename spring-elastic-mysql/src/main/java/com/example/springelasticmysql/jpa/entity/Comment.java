@@ -1,4 +1,4 @@
-package com.example.springelasticmysql.entity;
+package com.example.springelasticmysql.jpa.entity;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;

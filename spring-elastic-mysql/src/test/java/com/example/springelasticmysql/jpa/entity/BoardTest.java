@@ -1,8 +1,8 @@
-package com.example.springelasticmysql.entity;
+package com.example.springelasticmysql.jpa.entity;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.example.springelasticmysql.repository.BoardRepository;
+import com.example.springelasticmysql.jpa.repository.BoardRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
